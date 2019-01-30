@@ -238,7 +238,7 @@ class UserController extends Controller
 
     }
 
-    public function VirfiyAccount()
+   public function VirfiyAccount()
     {
 
         $input = Request()->all();
@@ -254,19 +254,23 @@ class UserController extends Controller
         $body .= '<body>';
         $body .= '<h1> Ar5ss app شكرا لتسجيلك فى </h1>';
         $body .= ' <h3>  برجاء الضغط على الرابط ادناه  Ar5ss app للمتابعة وتفعيل العضويه الخاصه بك فى    </h3>';
-        $body .= '<a href="http://188.226.135.249/api/acativateaccount/' . $id . '" target="_blank">اضغط هنا</a>';
+        $body .= '<a href="http://ar5ss.com/api/acativateaccount/' . $id . '" target="_blank">اضغط هنا</a>';
         $body .= '<h4>شكرا ..</h4>';
         $body .= '</body>';
         $body .= '</html>';
         $headers = "MIME-Version: 1.0" . "\r\n";
         $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
         $headers .= 'From: Ar5ssApp<' . $Email . '>' . "\r\n";
+           $headers .= "Organization: Sender Organization\r\n";
+        $headers .= "MIME-Version: 1.0\r\n";
+    //   $headers .= "Content-type: text/plain; charset=iso-8859-1\r\n";
+      $headers .= "X-Priority: 3\r\n";
+      $headers .= "X-Mailer: PHP". phpversion() ."\r\n";
         $to = $UserEmail;
         $subject = ".$Title.";
         echo mail($to, $subject, $body, $headers);
 
     }
-
     public function AcativateAccount($id)
     {
 
